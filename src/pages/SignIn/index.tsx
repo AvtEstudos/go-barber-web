@@ -1,15 +1,16 @@
-import React, { useRef, useCallback, useContext } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { Form } from '@unform/web';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
 
-import {AuthContext} from '../../context/AuthContext';
+import {useAuth} from '../../hooks/AuthContext';
 import logoImg from '../../assets/logo.svg';
 import { Container, Content, Background } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import getValidationErrors from '../../utils/getValidationErrors';
+import SignUp from '../SignUp';
 
 interface SingInFormData {
   email: string,
@@ -19,7 +20,7 @@ interface SingInFormData {
 const SignIn: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
 
-  const { signIn } = useContext(AuthContext);
+  const {signIn } = useAuth();
 
   const handleSubmit = useCallback(async (data: SingInFormData) => {
     try {
@@ -62,7 +63,7 @@ const SignIn: React.FC = () => {
           <a href="forgot">Esqueci minha senha</a>
         </Form>
 
-        <a href="">
+        <a href="SignUp">
           <FiLogIn /> Criar conta
         </a>
       </Content>
