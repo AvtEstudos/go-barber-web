@@ -3,6 +3,7 @@ import { isToday, format, parseISO, isAfter } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import DayPicker, {DayModifiers} from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
+import { Link } from 'react-router-dom';
 
 import {
   Container,
@@ -137,13 +138,12 @@ const Dashboard: React.FC = () => {
           <img src={logoImg} alt="GoBarber" />
 
           <Profile>
-            <img
-              src={user.avatar_url}
-              alt={user.name}
-            />
+            <img src={user.avatar_url} alt={user.name} />
             <div>
               <span>Bem-vindo,</span>
-              <strong>{user.name}</strong>
+              <Link to="/profile">
+                <strong>{user.name}</strong>
+              </Link>
             </div>
           </Profile>
 
