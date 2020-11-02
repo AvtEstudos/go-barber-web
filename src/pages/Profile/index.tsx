@@ -30,13 +30,13 @@ const Profile: React.FC = () => {
   const { addToast } = useToast();
   const history = useHistory();
 
-  const { user, updateUser} = useAuth();
+  const { user, updateUser } = useAuth();
 
   const handleSubmit = useCallback(
     async (data: ProfileFormData) => {
       try {
         formRef.current?.setErrors({});
-
+        console.log('Teste');
         const schema = Yup.object().shape({
           name: Yup.string().required('Nome obrigatório'),
           email: Yup.string()
@@ -48,13 +48,13 @@ const Profile: React.FC = () => {
             then: Yup.string().required('Campo obrigatório'),
             otherwise: Yup.string(),
           }),
-          /*password_confirmation: Yup.string()
+         password_confirmation: Yup.string()
             .when('old_password', {
               is: val => !!val.length,
               then: Yup.string().required('Campo obrigatório'),
               otherwise: Yup.string(),
             })
-            .oneOf([Yup.ref('password'), null], 'Confirmação incorreta'),*/
+            .oneOf([Yup.ref('password'),], 'Confirmação incorreta'),
         });
 
         await schema.validate(data, {
